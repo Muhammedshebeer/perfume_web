@@ -1,0 +1,22 @@
+{% load static %}<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}CLASSIO — The Art of Fragrance{% endblock %}</title>
+<meta name="description" content="Classio, a refined destination for exquisite fragrances and modern luxury.">
+<link rel="icon" type="image/svg+xml" href="{% static 'img/favicon.svg' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">{% block head %}{% endblock %}</head>
+<body>
+<div class="topbar">COMPLIMENTARY UAE DELIVERY ON ORDERS OVER AED 350 <span>·</span> DISCOVER YOUR SIGNATURE SCENT</div>
+<header class="site-header"><a class="brand" href="{% url 'home' %}">CLASSIO<span>.</span><small>THE ART OF FRAGRANCE</small></a>
+<button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" data-menu-toggle>☰</button>
+<nav class="main-nav" data-nav><a href="{% url 'home' %}">Home</a><a href="{% url 'catalog' %}">Shop fragrances</a><a href="{% url 'about' %}">Our story</a><a href="{% url 'contact' %}">Contact</a></nav>
+<div class="header-actions"><a href="{% url 'cart' %}" aria-label="Shopping bag">Bag <span class="bag-count">{{ cart_count }}</span></a>{% if user.is_staff %}<a href="{% url 'dashboard' %}">Dashboard</a>{% endif %}</div></header>
+{% if messages %}<div class="messages container" role="status">{% for message in messages %}<div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</div>{% endfor %}</div>{% endif %}
+<main>{% block content %}{% endblock %}</main>
+<footer class="footer"><div class="container footer-grid"><div><div class="footer-logo">CLASSIO<span>.</span></div><p>Distinctive fragrances. Timeless impressions.<br>Curated for moments that matter.</p></div>
+<div><h4>EXPLORE</h4><a href="{% url 'catalog' %}">Shop all</a><a href="{% url 'about' %}">Our story</a><a href="{% url 'contact' %}">Get in touch</a></div>
+<div><h4>YOUR ACCOUNT</h4><a href="{% url 'cart' %}">Shopping bag</a><a href="{% url 'login' %}">Staff login</a></div>
+<div><h4>STAY INSPIRED</h4><p>Dubai, United Arab Emirates</p><p>Luxury, bottled.</p></div></div><div class="footer-bottom">© {% now 'Y' %} Classio. All rights reserved. <span>CRAFTED FOR THE EXTRAORDINARY</span></div></footer>
+<script src="{% static 'js/site.js' %}" defer></script>{% block scripts %}{% endblock %}
+</body></html>
